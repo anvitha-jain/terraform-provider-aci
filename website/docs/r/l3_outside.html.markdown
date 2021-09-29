@@ -34,10 +34,10 @@ Manages ACI L3 Outside
 - `target_dscp` - (Optional) The target differentiated services code point (DSCP) of the path attached to the layer 3 outside profile. Allowed values are "CS0", "CS1", "AF11", "AF12", "AF13", "CS2", "AF21", "AF22", "AF23", "CS3", "AF31", "AF32", "AF33", "CS4", "AF41", "AF42", "AF43", "CS5", "VA", "EF", "CS6", "CS7" and "unspecified". Default is "unspecified".
 
 - `relation_l3ext_rs_dampening_pol` - (Optional) Relation to class rtctrlProfile. Cardinality - N_TO_M. Type - Set of Map.
-- `relation_l3ext_rs_ectx` - (Optional) Relation to class fvCtx. Cardinality - N_TO_ONE. Type - String.
+- `relation_l3ext_rs_ectx` - (Optional) Relation to VRF (class fvCtx). Cardinality - N_TO_ONE. Type - String.
 - `relation_l3ext_rs_out_to_bd_public_subnet_holder` - (Optional) Relation to class fvBDPublicSubnetHolder. Cardinality - N_TO_M. Type - Set of String.
 - `relation_l3ext_rs_interleak_pol` - (Optional) Relation to class rtctrlProfile. Cardinality - N_TO_ONE. Type - String.
-- `relation_l3ext_rs_l3_dom_att` - (Optional) Relation to class extnwDomP. Cardinality - N_TO_ONE. Type - String.
+- `relation_l3ext_rs_l3_dom_att` - (Optional) Relation to L3 Domain (class extnwDomP). Cardinality - N_TO_ONE. Type - String.
 
 ## Attribute Reference
 

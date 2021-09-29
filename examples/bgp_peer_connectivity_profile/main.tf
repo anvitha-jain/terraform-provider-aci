@@ -13,9 +13,23 @@ provider "aci" {
   url      = "" # <cloud APIC URL>
   insecure = true
 }
+
 resource "aci_tenant" "tenant01" {
   name        = "tenant01"
   description = "This tenant is created by terraform ACI provider"
+}
+
+resource "aci_l3_domain_profile" "l3_domain_profile" {
+  name = "l3extDomp1"
+}
+
+resource "aci_vrf" "vrf1" {
+  tenant_dn = aci_tenant.tenant01.id
+  bd_enforced_enable = "no"
+  knw_mcast_act      = "permit"
+  name               = "vrf1"
+  pc_enf_dir         = "ingress"
+  pc_enf_pref        = "enforced"
 }
 
 resource "aci_l3_outside" "l3_outside" {
@@ -24,6 +38,8 @@ resource "aci_l3_outside" "l3_outside" {
   annotation     = "tag_l3out"
   name_alias     = "alias_out"
   target_dscp    = "unspecified"
+  relation_l3ext_rs_ectx = aci_vrf.vrf1.id
+  relation_l3ext_rs_l3_dom_att = aci_l3_domain_profile.l3_domain_profile.id
 }
 
 resource "aci_logical_node_profile" "logical_node_profile" {
